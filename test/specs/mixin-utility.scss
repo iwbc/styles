@@ -1,0 +1,23 @@
+@include test-module('mixins/utility.scss') {
+  @include test('clearfix') {
+    @include assert {
+      @include output {
+        .element {
+          @include clearfix;
+        }
+      }
+
+      @include expect {
+        .element::before,
+        .element::after {
+          display: table;
+          content: ' ';
+        }
+
+        .element::after {
+          clear: both;
+        }
+      }
+    }
+  }
+}

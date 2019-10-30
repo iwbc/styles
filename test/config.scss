@@ -1,0 +1,19 @@
+$true-terminal-output: false;
+$_viewport-width: 640px;
+$_viewport-height: 1136px;
+$_breakpoints: (
+  'xs': 0,
+  'sm': 480px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1440px
+);
+$_font-size: 16px;
+$_colors: (
+  'white': #fff,
+  'black': #000
+);
+$_z-indexes: (
+  'header': 1000,
+  'modal': 10000
+);

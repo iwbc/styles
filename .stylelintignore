@@ -1,2 +1,3 @@
 node_modules/*
 lib/vendors/*
+app/vendors/*

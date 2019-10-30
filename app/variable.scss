@@ -1,0 +1,71 @@
+////
+/// @group 00. 設定
+////
+
+/// pxから%へ変換する際の基準値
+
+$_per-width: 1280px;
+
+/// pxからvwへ変換する際の基準値
+
+$_viewport-width: 375px;
+
+/// pxからvhへ変換する際の基準値
+
+$_viewport-height: 1136px;
+
+/// ブレークポイント
+
+$_breakpoints: (
+  'xs': 0,
+  'sm': 480px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1440px
+);
+
+/// フォントファミリー
+
+$_font-family: 'Hiragino Sans', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, sans-serif;
+
+/// フォントサイズ
+/// - 16px (一般的なブラウザのデフォルトフォントサイズ)を推奨
+
+$_font-size: 16px;
+
+/// 行間
+
+$_line-height: 1.5;
+
+/// テキストカラー
+
+$_text-color: #333;
+
+/// テキストリンクカラー
+
+$_text-link-color: #04c;
+
+/// マウスオーバー時のテキストリンクカラー
+
+$_text-link-hover-color: #04c;
+
+/// 訪問済みのテキストリンクカラー
+
+$_text-link-visited-color: #04c;
+
+/// サイトでの使用色<br>
+/// キーに識別名、値にカラーコードを指定する
+
+$_colors: (
+  'text': $_text-color,
+  'text-link': $_text-link-color,
+  'text-link-hover': $_text-link-hover-color,
+  'text-link-visited': $_text-link-visited-color
+);
+
+/// z-index管理用変数<br>
+/// キーに識別名、値にz-index値を指定する
+
+$_z-indexes: (
+  'example': 100
+);

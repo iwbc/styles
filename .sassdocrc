@@ -1,0 +1,12 @@
+{
+  "dest": "./docs",
+  "sort": ["group<", "access<", "line<"],
+  "display": {
+    "access": ["public"],
+    "alias": false,
+    "watermark": false
+  },
+  "privatePrefix": false,
+  "noUpdateNotifier": true,
+  "verbose": true
+}

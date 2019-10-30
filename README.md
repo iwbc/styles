@@ -23,8 +23,7 @@
     - [BEM](#bem)
     - [label](#label)
     - [JavaScript](#javascript)
-  - [インデントルール](#%E3%82%A4%E3%83%B3%E3%83%87%E3%83%B3%E3%83%88%E3%83%AB%E3%83%BC%E3%83%AB)
-  - [EditorConfigとLinterの導入](#editorconfig%E3%81%A8linter%E3%81%AE%E5%B0%8E%E5%85%A5)
+  - [コードの自動フォーマット](#%E3%82%B3%E3%83%BC%E3%83%89%E3%81%AE%E8%87%AA%E5%8B%95%E3%83%95%E3%82%A9%E3%83%BC%E3%83%9E%E3%83%83%E3%83%88)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -99,16 +98,22 @@
 リセットCSS、Webフォントの定義、タグの基本的なスタイルの定義など、基礎となるスタイルが帰属するレイヤー。
 
 ``` scss
-// _font.scss
-@font-face {
-  font-family: "Noto Sans CJK JP";
-  ...
+:root {
+  font-size: $_font-size;
 }
 
-// _tag.scss
+body {
+  font-family: $_font-family;
+  line-height: $_line-height;
+  color: $_text-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
 a {
-  color: #04c;
-  ...
+  color: $_text-link-color;
+  text-decoration: none;
 }
 ```
 
@@ -121,7 +126,6 @@ a {
 - 自身の基本的な見栄え（背景色など）は、ここで定義して良い。
 
 ``` scss
-// _container.scss
 .l_container {
   width: 1200px;
   background-color: #fff;
@@ -147,7 +151,6 @@ a {
 - 使用箇所を限定するようなクラス名は避ける。
 
 ``` scss
-// _btn.scss
 .m_btn {
   ...
   &._disabled {
@@ -167,7 +170,6 @@ a {
 - 機能や見栄えが予測できるようなクラス名をつける。
 
 ``` scss
-// _article-card.scss
 .c_article-card {
   ...
   .m_btn {
@@ -186,12 +188,12 @@ a {
 - 統合オブジェクトには、内包するオブジェクトや機能が予測できるようなクラス名をつける。
 
 ``` scss
-// _header.scss
 .p_header {
   ...
 }
+```
 
-// _article-cards.scss
+``` scss
 .p_article-cards {
   ...
   .c_article-card {
@@ -209,7 +211,6 @@ a {
 - 新たなページの追加や既存ページの更新などによって、同じような部品が登場した場合は、他のレイヤーで再定義できないか検討する。
 
 ``` scss
-// _home.scss
 .home_visual {
   ...
 }
@@ -224,7 +225,6 @@ Modifierで解決することが難しいまたは適切ではない、わずか
 - 本レイヤーのみ`!important`ルールの使用が可能。
 
 ``` scss
-// _font-size.scss
 .u_fs-smaller {
   font-size: smaller !important;
 }
@@ -245,7 +245,9 @@ Modifierで解決することが難しいまたは適切ではない、わずか
     ...
   }
 }
+```
 
+```scss
 // (2)
 // 同位レベルのレイヤー要素同士でカスケーディングしている
 // 同位レベルのレイヤー要素同士に依存関係をもたせると、挙動の予測が困難になってしまう
@@ -268,83 +270,24 @@ Modifierで解決することが難しいまたは適切ではない、わずか
 ### ディレクトリ構成
 
 ``` shell
-├── configs    # 設定
-│   ├── functions         # Sassユーザー関数
-│   ├── mixins            # Sassミックスイン
-│   ├── _config.scss      # 設定
-│   └── _variable.scss    # グローバル変数
-├── foundations    # Foundationレイヤー
-├── layouts        # Layoutレイヤー
-├── objects
-│   ├── components    # Componentレイヤー
-│   ├── modules       # Moduleレイヤー
-│   ├── packages      # Packageレイヤー
-├── pages        # Pageレイヤー
-├── utilities    # Utilityレイヤー
-├── vendors
+├── lib/
+└── app/
+│   ├── founadtions/    # Foundationレイヤー
+│   ├── layouts/        # Layoutレイヤー
+│   ├── objects/
+│   │   ├── components/ # Componentレイヤー
+│   │   ├── modules/    # Moduleレイヤー
+│   │   └── packages/   # Packageレイヤー
+│   ├── pages/          # Pageレイヤー
+│   ├── utilities/      # Utilityレイヤー
+│   ├── vendors
+│   └── variable.scss/  # グローバル変数
 └── style.scss
 ```
 
-- `vendors`は、サードパーティのCSSや、jQueryプラグインなどのサードパーティライブラリで定義されたスタイルをオーバーライドするスタイルを記述したCSS（SCSS）ファイルを配備する。これらは本ガイドラインの適用対象外とする。
+- `vendors`は、サードパーティのCSSや、jQueryプラグインなどのサードパーティライブラリで定義されたスタイルをオーバーライドするスタイルを記述したCSS（SCSS）ファイルを配備するディレクトリ。当該スタイルは本ガイドラインの適用対象外とする。
 
 ### style.scss
-
-``` scss
-@charset "UTF-8";
-
-//
-// Config
-//
-
-@import "configs/_config.scss";
-@import "configs/_variable.scss";
-@import "configs/functions/_*.scss";
-@import "configs/mixins/_*.scss";
-
-//
-// Foundation
-//
-
-@import "foundations/_reset.scss";
-@import "foundations/_font.scss";
-@import "foundations/_tag.scss";
-
-//
-// Layout
-//
-
-@import "layouts/_*.scss";
-
-//
-// Object / Module
-//
-
-@import "objects/modules/_*.scss";
-
-//
-// Object / Component
-//
-
-@import "objects/components/_*.scss";
-
-//
-// Object / Packages
-//
-
-@import "objects/packages/_*.scss";
-
-//
-// Page
-//
-
-@import "pages/_*.scss";
-
-//
-// Utility
-//
-
-@import "utilities/_*.scss";
-```
 
 - 設定と各レイヤーの`@import`順を変更しないこと。
 - `vendors`は、任意の位置で`@import`して良い。
@@ -388,17 +331,9 @@ JavaScriptで操作するためのセレクタとしてID・Classセレクタを
 - 特に問題のない限り、Classを使用する。
 - このセレクタにはスタイルを定義しない。
 
-### インデントルール
+### コードの自動フォーマット
 
-インデントは半角スペース2個とする。
-
-### EditorConfigとLinterの導入
-
-エディタにEditorConfigとLinterを導入することを推奨する。  
-**導入できないエディタは窓から投げ捨てて良い。**
-
-[Atom](https://atom.io/)の場合は以下のプラグインで導入できる。
-
-- [EditorConfig](https://atom.io/packages/editorconfig)
-- [Linter](https://atom.io/packages/linter)
-- [linter-sass-lint](https://atom.io/packages/linter-sass-lint)
+[Visual Studio Code](https://azure.microsoft.com/ja-jp/products/visual-studio-code/)の場合は、以下のプラグインで保存時に自動的にコード整形ができるようになる。
+- [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [stylelint-plus](https://marketplace.visualstudio.com/items?itemName=hex-ci.stylelint-plus)

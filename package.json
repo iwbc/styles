@@ -8,7 +8,7 @@
   "scripts": {
     "lint": "stylelint \"**/*.scss\"",
     "lint:fix": "stylelint --fix \"**/*.scss\"",
-    "doc": "sassdoc \"lib/**/*.scss\"",
+    "doc": "sassdoc {\"lib/**/*.scss\",app/variable.scss}",
     "eslint": "eslint \"test/test.js\"",
     "test": "mocha"
   },
