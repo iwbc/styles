@@ -1,0 +1,38 @@
+{
+  "name": "styles",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=10"
+  },
+  "private": true,
+  "scripts": {
+    "lint": "stylelint \"**/*.scss\"",
+    "lint:fix": "stylelint --fix \"**/*.scss\"",
+    "doc": "sassdoc \"lib/**/*.scss\"",
+    "eslint": "eslint \"test/test.js\"",
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
+    "eslint-config-prettier-standard": "^3.0.1",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "mocha": "^6.2.2",
+    "node-sass": "^4.12.0",
+    "prettier": "^1.18.2",
+    "prettier-config-standard": "^1.0.1",
+    "sass-true": "^5.0.0",
+    "sassdoc": "^2.7.1",
+    "stylelint": "^11.1.1",
+    "stylelint-config-prettier": "^6.0.0",
+    "stylelint-config-recess-order": "^2.0.3",
+    "stylelint-config-standard": "^19.0.0",
+    "stylelint-prettier": "^1.1.1",
+    "stylelint-scss": "^3.11.1"
+  }
+}
